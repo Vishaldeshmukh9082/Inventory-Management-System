@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="section">
+        <main class="container mx-auto p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                <!-- Product Card -->
+                <div th:each="p: ${productslist}" class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img class="w-full h-48 object-cover" th:src="${'..' +p.productImagePath}" alt="Product Image">
+                    <div class="p-4">
+                        <h2 th:text="${p.productName}" class="text-lg font-semibold">Product Name</h2>
+                        <p th:text="${p.productPrice}" class="text-gray-700 mt-2">$29.99</p>
+                        <a  data-th-href="@{'get-product/'+*{p.productId}}">
+                        <button
+                            class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700">
+                            Buy Now
+                        </button>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

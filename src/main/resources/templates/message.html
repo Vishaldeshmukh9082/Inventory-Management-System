@@ -1,0 +1,39 @@
+<div 
+  class="flex items-center justify-center min-h-screen bg-gray-100"
+  role="alert">
+   Your existing alert box code
+  <div
+    data-th-if="${session.message}" 
+    data-th-object="${session.message}" 
+    data-th-fragment="messageBox"
+    data-th-classappend="*{'text-'+type+'-800 border border-'+type+'-300 rounded-lg bg-'+type+'-50 dark:bg-gray-800 dark:text-'+type+'-400 dark:border-'+type+'-800' }"
+    class="max-w-2xl p-5 text-center items-center"
+    role="alert">
+    <div class="flex justify-center">
+      <svg class="w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>
+        <span class="font-medium">Info alert!</span>
+        <span data-th-text="*{messagetext}"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const messageBox = document.getElementById('messageBox');
+    if (messageBox) {
+      setTimeout(() => {
+        messageBox.remove(); // Remove the message box after 10 seconds
+        // Optionally, clear the session attribute on the server side by sending a request
+        fetch('/clear-message', { method: 'POST' }); // Backend endpoint to clear the message
+      }, 10000); // 10 seconds
+    }
+  });
+</script>
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="section">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <center>
+                Add Products
+            </center>
+        </h5>
+        <form 
+        method="post"
+        data-th-action="@{'/add-product'}"
+         data-th-object="${productForm}"
+         enctype="multipart/form-data"
+        class="max-w-lg mx-auto">
+
+            <div class="mb-5">
+                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                <select id="countries" data-th-field="*{categoryId}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">--Select Category--</option>
+                    <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                </select>
+            </div>
+            
+            <!-- First row with two text boxes -->
+            <div class="flex space-x-4 mb-5">
+                <div class="w-1/2">
+                    <label for="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                    <input type="text" id="productName" data-th-field="*{productName}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" required />
+                </div>
+                <div class="w-1/2">
+                    <label for="productNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Number</label>
+                    <input type="text" id="productNumber" data-th-field="*{productNumber}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Number" required />
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <label for="expiryDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expiry Date</label>
+                <input type="date" id="expiryDate" data-th-field="*{expiryDate}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+            
+            <div class="mb-5">
+                <label for="receivedDate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Received Date</label>
+                <input type="date" id="receivedDate" data-th-field="*{receivedDate}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+            
+            <!-- Second row with two text boxes -->
+            <div class="flex space-x-4 mb-5">
+                <div class="w-1/2">
+                    <label for="productPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
+                    <input type="number" id="productPrice" data-th-field="*{productPrice}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Price" required />
+                </div>
+                <div class="w-1/2">
+                    <label for="productQuantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Quantity</label>
+                    <input type="number" id="productQuantity" data-th-field="*{productQuantity}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Quantity" required />
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <label for="stockStatus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock Status</label>
+                <select id="stockStatus" data-th-field="*{stockStatus}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option value="">-- Select Status --</option>
+                    <option value="inStock">In Stock</option>
+                    <option value="outOfStock">Out of Stock</option>
+                </select>
+            </div>
+            <div class="mb-5">
+            <label>Product Image: </label><input type="file" name="file" required /><br>
+        </div>
+            
+            <!-- <div class="mb-5">
+                <label for="productQuantity2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Additional Product Quantity</label>
+                <input type="number" id="productQuantity2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Additional Quantity" required />
+            </div> -->
+
+            <div class="mb-3 flex justify-center space-x-3">
+                <button type="submit"
+                    class="px-3 py-2 rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800">
+                    Submit
+                </button>
+                <button type="reset"
+                    class="px-3 py-2 rounded bg-orange-800 hover:bg-orange text-blue-800 dark:bg-orange-800 dark:hover:bg-orange-800">
+                    Reset
+                </button>
+            </div>
+                 
+        </form>
+    </div>
+</body>
+
+</html>

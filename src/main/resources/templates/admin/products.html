@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- div class="sm:pl-64 pt-5" style="height: 1000px"><center>
+        Admin Home Page hjgssssssssssssssssssssssssss
+    </center> -->
+
+    <div id="section">
+        
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{admin/sidebar::sidebar}"></div>
+        </div>
+
+        <!-- <div class="sm:pl-64 pt-5" style="height: 1000px">
+            Admin Home Page hjgssssssssssssssssssssssssss
+        
+            
+        </div> -->
+        <div class="sm:pl-64 pl-10 pr-10 pt-5 pt-20">
+            <div class="">
+              <!-- <h1 class="text-5xl">Welcome to Dashbaord page</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequatur, ratione!
+              </p> -->
+              <div class="  pt-5 flex justify-center flex-col items-center relative overflow-x-auto shadow-md sm:rounded-lg">
+                <h1 class="text-5xl pb-10">Products page</h1>
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <!-- <th scope="col" class="px-6 py-3">
+                                category_id  
+                            </th> -->
+                            
+                            <th scope="col" class="px-6 py-3">
+                                product_number
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                product_name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                product_quantity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                product_price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                recieved_date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                expiry_date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                stock_status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="p : ${products}" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <!-- <th  scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                
+                            </th> -->
+                            <td th:text="${p.productNumber}" class="px-6 py-4">
+                                
+                            </td>
+                            <td th:text="${p.productName}" class="px-6 py-4">
+                                Laptop
+                            </td>
+                            <td th:text="${p.productQuantity}" class="px-6 py-4">
+                                $2999
+                            </td>
+                            <td th:text="${p.productPrice}" class="px-6 py-4">
+                                
+                            </td>
+                            <td th:text="${p.recievedDate}" class="px-6 py-4">
+                                Laptop
+                            </td>
+                            <td th:text="${p.expiryDate}" class="px-6 py-4">
+                                $2999
+                            </td>
+                            <td th:text="${p.stockStatus}" class="px-6 py-4">
+                                $2999
+                            </td>
+                            <td  class="px-6 py-4">
+                                <a data-th-href="@{'/products/delete/'+*{p.productId}}" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            
+            </div>
+          </div>
+
+
+    </div>
+
+
+
+</body>
+</html>

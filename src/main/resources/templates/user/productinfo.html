@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- data-th-action="@{'/add-product'}" -->
+
+  <div id="section">
+    <div class="container mx-auto p-6" >
+        <!-- Product Card -->
+        <div class="max-w-4xl h-auto bg-white shadow-lg rounded-lg overflow-hidden mx-auto">
+            <div class="flex justify-center">
+                <img class="w-[900px]  h-96 object-cover" th:src="${'../..' +product.productImagePath}" alt="Product Image">
+            </div>
+            
+
+            <div class="p-6">
+                <h1 class="text-2xl font-bold text-gray-800" th:text="${product.productName}">Product Name</h1>
+                <p class="text-gray-600 mt-2" >ARM Cortex A75 Octa Core Processor, Dual Rear Camera Setup: 13MP + 2MP, Camera Features: Panorama, Burst Mode, Time Lapse, Face Beauty, Night Mode, Slow Motion, QR Code Scanner, Pro Mode, 5MP Front Camera, Features: Face Beauty, Night Mode, Portrait Mode, 5000 mAh Battery, Unisoc T610 Processor</p>
+
+                <div class="mt-4 flex items-center">
+                    <span class="text-2xl font-semibold text-gray-800" th:text="${product.productPrice}">$49.99</span>
+                </div><div class="flex justify-center mt-6">
+                    <a  data-th-href="@{'/user/add-order/'+*{product.productId}}">
+                <button  class="mt-6 w-80 flex justify-center bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+                    Buy Now
+                </button>
+            </a>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </body>
+</html>

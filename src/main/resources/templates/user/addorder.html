@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  
+
+  <div id="section">
+    <h2 class="text-4xl text-center mt-5 mb-5 font-extrabold text-gray-500">Place Your Order</h2>
+    <form method="post" data-th-action="@{'/user/addorder'}" data-th-object="${orderForm}" class="max-w-lg mx-auto">
+      <input type="hidden" data-th-field="*{customerId}" id="customerId">
+      <input type="hidden" th:value="${loggedInUser.userid}" id="customerIdvalue">
+ 
+
+        <div class="mb-5">
+          <label for="productName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+            Name</label>
+          <input type="text" id="productName" data-th-field="*{orderProductName}" 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Product Name" readonly required />
+
+      </div>
+
+   
+        <div class="mb-5">
+          <label for="productPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+            Price</label>
+          <input type="number" id="orderProductPrice" data-th-field="*{orderProductPrice}"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Product Price" readonly required />
+        </div>
+        <div class="mb-5">
+          <label for="productQuantity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+            Quantity</label>
+          <input type="number" id="orderProductQuantity" onchange="calculateTotal()" data-th-field="*{orderProductQuantity}"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Product Quantity" required />
+        </div>
+      <!-- </div> -->
+
+      <div class="mb-5">
+        <label for="totalAmount1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+          Total Amount</label>
+        <input type="number" id="totalAmount" data-th-field="*{totalAmount}"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Total Amount" readonly required />
+      </div>
+
+      <!-- <div class="mb-5">
+        <label for="stockStatus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock
+          Status</label>
+        <select id="stockStatus" data-th-field="*{stockStatus}"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required>
+          <option value="">-- Select Status --</option>
+          <option value="inStock">In Stock</option>
+          <option value="outOfStock">Out of Stock</option>
+        </select>
+      </div> -->
+
+      <!-- <div class="mb-5">
+            <label for="productQuantity2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Additional Product Quantity</label>
+            <input type="number" id="productQuantity2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Additional Quantity" required />
+        </div> -->
+        <input type="hidden" id="orderDate" data-th-field="*{orderDate}" >
+        <p th:text="${orderForm.orderProductQuantity}"></p>
+
+        
+
+      <div class="mb-3 flex justify-center space-x-3">
+        <button type="submit" onclick="getCustomerId()"
+          class="px-3 py-2 rounded bg-gray-800 hover:bg-gray text-white dark:bg-blue-800 dark:hover:bg-blue-800">
+          Submit
+        </button>
+
+        <script>
+          function calculateTotal() {
+            const price = parseFloat(document.getElementById("orderProductPrice").value);
+           // const date = parseDate(document.getElementById("orderDate").value);
+            const quantity = parseFloat(document.getElementById("orderProductQuantity").value);
+            const customerid =document.getElementById("customerIdvalue").value;
+            
+            document.getElementById("customerId").value = customerid;
+            const total = price * quantity;
+            document.getElementById("totalAmount").value = total.toFixed(2);
+
+            let currentDate = new Date();
+                let day = String(currentDate.getDate()).padStart(2, '0');  // Adds leading zero if needed
+                let month = String(currentDate.getMonth() + 1).padStart(2, '0');  // Month is 0-based
+                let year = currentDate.getFullYear();
+
+                let formattedDate = `${day}/${month}/${year}`;
+                document.getElementById("orderDate").value = formattedDate;
+                
+                
+
+          }
+          calculateTotal(); // Initial calculation
+
+          function getCustomerId(){
+            
+
+          }
+          
+        </script>
+
+
+
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>

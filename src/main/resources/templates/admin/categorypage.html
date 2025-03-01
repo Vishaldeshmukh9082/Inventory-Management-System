@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- div class="sm:pl-64 pt-5" style="height: 1000px"><center>
+        Admin Home Page hjgssssssssssssssssssssssssss
+    </center> -->
+
+    <div id="section">
+        
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{admin/sidebar::sidebar}"></div>
+        </div>
+
+        <!-- <div class="sm:pl-64 pt-5" style="height: 1000px">
+            Admin Home Page hjgssssssssssssssssssssssssss
+        
+            
+        </div> -->
+        <div class=" pt-20" >
+            <div class="flex justify-center flex-col items-center">
+              <!-- <h1 class="text-5xl">Welcome to Dashbaord page</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequatur, ratione!
+              </p> -->
+              <div class=" pt-5 flex justify-center flex-col items-center relative overflow-x-auto shadow-md sm:rounded-lg">
+                <h1 class="text-5xl pb-10">View Category page</h1>
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Category id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category Description
+                            </th>
+                            <!-- <th scope="col" class="px-6 py-3">
+                                Price
+                            </th> -->
+                            <th scope="col" class="px-6 py-3">
+                                Edit
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="c: ${category}" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th th:text="${c.categoryId}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                1
+                            </th>
+                            <td th:text="${c.categoryName}" class="px-6 py-4">
+                                Laptop 
+                            </td>
+                            <td th:text="${c.categoryDescription}" class="px-6 py-4">
+                                Laptop Description
+                            </td>
+                            
+                            <td class="px-6 py-4">
+                                <a href="#" data-th-href="@{'/categories-name/'+*{c.categoryName}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a data-th-href="@{'/categories/delete/'+*{c.categoryId}}" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+                            </td>
+                        </tr>
+                        
+                        <!-- <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                2
+                            </th>
+                            <td class="px-6 py-4">
+                                Accessories
+                            </td>
+                            <td class="px-6 py-4">
+                                Accessories Description
+                            </td>
+                           
+                            <td class="px-6 py-4">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                3
+                            </th>
+                            <td class="px-6 py-4">
+                                Phone
+                            </td>
+                            <td class="px-6 py-4">
+                                Phone Description
+                            </td>
+                            
+                            <td class="px-6 py-4">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                4
+                            </th>
+                            <td class="px-6 py-4">
+                                Wearables
+                            </td>
+                            <td class="px-6 py-4">
+                                Wearables Description
+                            </td>
+                           
+                            <td class="px-6 py-4">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            
+            </div>
+          </div>
+
+
+    </div>
+
+
+
+</body>
+</html>
